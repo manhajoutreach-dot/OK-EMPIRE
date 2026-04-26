@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { ArrowRight, ChevronDown } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import React from 'react';
 
 export const Hero = () => {
@@ -7,7 +7,6 @@ export const Hero = () => {
 
   return (
     <section className="relative h-screen flex flex-col items-center justify-center text-center px-4 overflow-hidden">
-      {/* Soft background glow for text focus */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-brand-cyan/5 blur-[120px] rounded-full pointer-events-none" />
 
       <motion.div
@@ -33,11 +32,7 @@ export const Hero = () => {
                 key={i}
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ 
-                  duration: 0.8, 
-                  delay: 1 + (i * 0.1),
-                  ease: [0.22, 1, 0.36, 1]
-                }}
+                transition={{ duration: 0.8, delay: 1 + (i * 0.1), ease: [0.22, 1, 0.36, 1] }}
                 className="text-4xl md:text-5xl lg:text-[60px] font-display font-bold text-stroke text-transparent leading-[1] uppercase"
               >
                 {word}
@@ -46,7 +41,7 @@ export const Hero = () => {
           </div>
         </motion.div>
 
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.5 }}
           transition={{ duration: 1.5, delay: 2 }}
@@ -56,7 +51,7 @@ export const Hero = () => {
           <span className="block mt-2 font-sans not-italic text-white/70">Aspiring developer and visionary crafting digital artifacts from the future.</span>
         </motion.p>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 2.5 }}
@@ -65,11 +60,11 @@ export const Hero = () => {
           <motion.button
             whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(0,240,255,0.3)" }}
             whileTap={{ scale: 0.95 }}
-            className="px-10 py-4 bg-white text-black text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-brand-cyan transition-all duration-500 ease-out"
+            onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+            className="px-10 py-4 bg-white text-black text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-brand-cyan transition-all duration-500 ease-out cursor-pointer"
           >
             Enter My World
           </motion.button>
-          
           <div className="text-[10px] uppercase tracking-[0.4em] text-white/30 hidden sm:block">Sequence: 001-A</div>
         </motion.div>
       </motion.div>
@@ -82,10 +77,7 @@ export const Hero = () => {
       >
         <div className="flex flex-col items-center gap-2 opacity-20">
           <span className="text-[10px] uppercase tracking-widest font-bold">Scroll</span>
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
+          <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 2, repeat: Infinity }}>
             <ChevronDown className="w-4 h-4" />
           </motion.div>
         </div>

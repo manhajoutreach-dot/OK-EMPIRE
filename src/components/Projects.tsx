@@ -1,15 +1,15 @@
 import { motion } from 'motion/react';
 import React from 'react';
 import { SectionHeader } from './AboutAndVision';
-import { ExternalLink, Github } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 const projects = [
   {
     id: '01',
     title: 'Manhaj Outreach',
-    category: 'A digital platform built to a college .',
+    category: 'A digital platform built for a college.',
     description: 'This project includes both frontend and backend development. It focuses on delivering structured content, accessibility, and real-world outreach.',
-    image: 'src/components/Screenshot (102).png',
+    image: '/screenshot-102.png',
     tags: ['Full Stack', 'Accessibility', 'Digital Outreach']
   },
   {
@@ -25,7 +25,7 @@ const projects = [
 export const Projects = () => {
   return (
     <section className="py-32 px-6 max-w-7xl mx-auto">
-      <SectionHeader 
+      <SectionHeader
         number="03"
         title="Artifacts"
         subtitle="Deployment of high-performance systems and real-world digital solutions."
@@ -42,18 +42,15 @@ export const Projects = () => {
             className="group relative"
           >
             <div className="relative aspect-[16/10] overflow-hidden rounded-sm glass mb-8 border border-white/5 bg-black/40">
-              <motion.img 
-                src={project.image} 
+              <motion.img
+                src={project.image}
                 alt={project.title}
                 className="w-full h-full object-cover filter grayscale contrast-125 brightness-50 group-hover:scale-105 group-hover:brightness-75 transition-all duration-1000"
               />
               <div className="absolute inset-0 bg-brand-cyan/5 group-hover:bg-transparent transition-colors" />
-              
               <div className="absolute top-0 right-0 p-4">
-                 <div className="w-2 h-2 bg-brand-cyan shadow-[0_0_12px_#00f0ff] animate-pulse" />
+                <div className="w-2 h-2 bg-brand-cyan shadow-[0_0_12px_#00f0ff] animate-pulse" />
               </div>
-
-              {/* Status Overlay */}
               <div className="absolute bottom-4 left-4 z-10 flex items-center gap-3">
                 <div className="h-[1px] w-8 bg-brand-cyan/40" />
                 <span className="text-[9px] uppercase tracking-[0.4em] text-brand-cyan/80 font-bold">
@@ -64,7 +61,6 @@ export const Projects = () => {
 
             <div className="space-y-6 px-4 border-l border-white/5 relative">
               <div className="absolute top-0 left-0 w-[2px] h-0 group-hover:h-3/4 bg-brand-cyan transition-all duration-700 shadow-[0_0_10px_#00f0ff]" />
-              
               <div className="flex items-center gap-3">
                 <span className="text-[9px] uppercase tracking-[0.4em] font-bold text-white/40 group-hover:text-brand-cyan transition-colors">FRAGMENT {project.id}</span>
                 <div className="h-[1px] w-6 bg-white/10" />
@@ -88,7 +84,7 @@ export const Projects = () => {
           </motion.div>
         ))}
       </div>
-      
+
       <div className="mt-20 text-center">
         <motion.button
           whileHover={{ scale: 1.05 }}
@@ -101,7 +97,3 @@ export const Projects = () => {
     </section>
   );
 };
-
-const ArrowRight = ({ className }: { className?: string }) => (
-  <svg className={className} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-);
