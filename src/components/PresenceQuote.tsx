@@ -8,9 +8,10 @@ export const PresenceQuote = () => {
     offset: ["start end", "end start"]
   });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 0.8]);
-  const blur = useTransform(scrollYProgress, [0, 0.5, 1], ["blur(10px)", "blur(0px)", "blur(10px)"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.4, 0.6, 1], [0, 1, 1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.9, 1, 0.9]);
+  const blur = useTransform(scrollYProgress, [0, 0.4, 0.6, 1], ["blur(10px)", "blur(0px)", "blur(0px)", "blur(10px)"]);
+  const x = useTransform(scrollYProgress, [0, 1], [-50, 50]);
 
   return (
     <section 
@@ -18,7 +19,7 @@ export const PresenceQuote = () => {
       className="h-[60vh] flex items-center justify-center relative overflow-hidden"
     >
       <motion.div
-        style={{ opacity, scale, filter: blur }}
+        style={{ opacity, scale, filter: blur, x }}
         className="max-w-4xl text-center px-6"
       >
         <span className="text-[10px] uppercase tracking-[0.6em] text-brand-cyan/40 mb-8 block font-mono">

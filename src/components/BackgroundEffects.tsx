@@ -22,18 +22,23 @@ const particles = Array.from({ length: PARTICLE_COUNT }, (_, i) => {
 export const BackgroundEffects = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 1000], [0, -50]);
+  const y1 = useTransform(scrollY, [0, 2000], [0, -200]);
+  const y2 = useTransform(scrollY, [0, 2000], [0, -100]);
+  const rotate = useTransform(scrollY, [0, 2000], [0, 45]);
 
   return (
     <>
       <div className="noise" />
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden" ref={containerRef}>
-        <motion.div style={{ y: y1 }} className="absolute -top-[10%] -left-[10%] w-[120%] h-[120%] opacity-10">
-          <div className="absolute top-[20%] left-[20%] w-[40%] h-[40%] bg-brand-cyan/20 blur-[150px] rounded-full" />
-          <div className="absolute bottom-[20%] right-[20%] w-[40%] h-[40%] bg-brand-purple/20 blur-[150px] rounded-full" />
+        <motion.div style={{ y: y1 }} className="absolute -top-[20%] -left-[10%] w-[120%] h-[140%] opacity-10">
+          <div className="absolute top-[20%] left-[20%] w-[50%] h-[50%] bg-brand-cyan/20 blur-[180px] rounded-full" />
+          <div className="absolute bottom-[10%] right-[10%] w-[40%] h-[40%] bg-brand-purple/20 blur-[180px] rounded-full" />
         </motion.div>
 
-        <div className="absolute inset-0 opacity-[0.2]" style={{ backgroundImage: `radial-gradient(#1e293b 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
+        <motion.div 
+          style={{ y: y2, backgroundImage: `radial-gradient(#1e293b 1px, transparent 1px)`, backgroundSize: '60px 60px' }}
+          className="absolute inset-0 opacity-[0.1]" 
+        />
 
         <div className="absolute inset-0 overflow-hidden">
           {particles.map(p => (
@@ -55,13 +60,17 @@ export const BackgroundEffects = () => {
           ))}
         </div>
 
-        <div className="absolute top-0 right-0 w-[400px] h-[400px] pointer-events-none opacity-10">
+        <motion.div 
+          style={{ rotate, y: y2 }}
+          className="absolute -top-20 -right-20 w-[600px] h-[600px] pointer-events-none opacity-[0.03]"
+        >
           <svg viewBox="0 0 200 200" className="w-full h-full">
-            <circle cx="100" cy="100" r="80" fill="none" stroke="white" strokeWidth="0.5" strokeDasharray="1,4" />
-            <circle cx="100" cy="100" r="60" fill="none" stroke="white" strokeWidth="1" opacity="0.5" />
-            <path d="M100 20 L100 30 M180 100 L170 100 M100 180 L100 170 M20 100 L30 100" stroke="white" strokeWidth="1" />
+            <circle cx="100" cy="100" r="90" fill="none" stroke="white" strokeWidth="0.2" strokeDasharray="2,8" />
+            <circle cx="100" cy="100" r="70" fill="none" stroke="white" strokeWidth="0.5" strokeDasharray="1,4" />
+            <circle cx="100" cy="100" r="50" fill="none" stroke="white" strokeWidth="1" opacity="0.5" />
+            <path d="M100 10 L100 25 M190 100 L175 100 M100 190 L100 175 M10 100 L25 100" stroke="white" strokeWidth="1" />
           </svg>
-        </div>
+        </motion.div>
 
         <style>{`
           @keyframes float {

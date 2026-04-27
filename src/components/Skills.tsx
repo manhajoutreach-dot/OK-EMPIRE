@@ -25,14 +25,18 @@ export const Skills = () => {
         {skills.map((skill, i) => (
           <motion.div
             key={skill.name}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.1, duration: 0.8 }}
-            className="border-t border-white/10 pt-12 relative group"
+            initial={{ opacity: 0, y: 50, filter: 'blur(10px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ 
+              duration: 1, 
+              delay: i * 0.1,
+              ease: [0.22, 1, 0.36, 1]
+            }}
+            className="border-t border-white/10 pt-14 relative group"
           >
             {/* Hover reveal glow */}
-            <div className="absolute -top-[1px] left-0 w-0 group-hover:w-full h-[2px] bg-brand-cyan transition-all duration-700 shadow-[0_0_15px_#00f0ff]" />
+            <div className="absolute -top-[1px] left-0 w-0 group-hover:w-full h-[2px] bg-brand-cyan transition-all duration-1000 ease-in-out shadow-[0_0_20px_#00f0ff]" />
             
             <div className="flex justify-between items-start mb-8">
               <span className="text-[10px] uppercase tracking-[0.4em] text-white/40 group-hover:text-brand-cyan transition-colors font-bold">
