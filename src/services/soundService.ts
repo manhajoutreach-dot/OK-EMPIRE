@@ -74,6 +74,41 @@ class SoundService {
     osc2.stop(this.ctx.currentTime + 0.6);
   }
 
+  public async playKeyClick() {
+    await this.init(); await this.resume();
+    if (!this.ctx || !this.primaryGain) return;
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+    osc.type = 'square';
+    osc.frequency.setValueAtTime(150, this.ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(40, this.ctx.currentTime + 0.05);
+    gain.gain.setValueAtTime(0, this.ctx.currentTime);
+    gain.gain.linearRampToValueAtTime(0.05, this.ctx.currentTime + 0.005);
+    gain.gain.linearRampToValueAtTime(0, this.ctx.currentTime + 0.05);
+    osc.connect(gain); gain.connect(this.primaryGain);
+    osc.start(); osc.stop(this.ctx.currentTime + 0.05);
+  }
+
+  public async playEnterClick() {
+    await this.init(); await this.resume();
+    if (!this.ctx || !this.primaryGain) return;
+    const osc = this.ctx.createOscillator();
+    const noise = this.ctx.createBufferSource();
+    const gain = this.ctx.createGain();
+    
+    // Sub-bass thump
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(60, this.ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(40, this.ctx.currentTime + 0.1);
+    
+    gain.gain.setValueAtTime(0, this.ctx.currentTime);
+    gain.gain.linearRampToValueAtTime(0.2, this.ctx.currentTime + 0.01);
+    gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.2);
+    
+    osc.connect(gain); gain.connect(this.primaryGain);
+    osc.start(); osc.stop(this.ctx.currentTime + 0.2);
+  }
+
   public async playGlitch() {
     await this.init(); await this.resume();
     if (!this.ctx || !this.primaryGain) return;
